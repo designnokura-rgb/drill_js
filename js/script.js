@@ -81,9 +81,15 @@ const students = [
     { name: "東山", score: 65 }
 ];
 
-const scoreOver = students.filter(student => student.score >= 80).map(student => student.name);
-    const overList = document.querySelector(".over-list");
-    overList.textContent = scoreOver.join(",");
+const scoreOver = students.filter(student => student.score >= 80);
+
+const studentOverList = document.getElementById("overSL");
+
+scoreOver.forEach((student)=>{
+        const innerList = document.createElement("li");
+        innerList.innerText = student.name;
+        studentOverList.appendChild(innerList);
+    });
 
 
 
