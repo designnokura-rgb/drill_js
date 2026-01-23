@@ -102,10 +102,13 @@ const Jsweets = [
 ];
 
 const tableBody = document.getElementById("japaneseSweet");
-Jsweets.forEach((Jsweet, index) => {
+Jsweets.forEach((Jsweet) => {
+    
     const tr = document.createElement("tr");
-    const tdIndex = document.createElement("td");
-    tdIndex.textContent = index;
+    tableBody.appendChild(tr);
+    tr.innerHTML = `
+    <td>${Jsweet.id}</td><td>${Jsweet.name}</td><td>${Jsweet.price}円</td>
+    `;
     
 });
 
