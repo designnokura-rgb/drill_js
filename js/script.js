@@ -19,16 +19,22 @@ const blueBtn = document.getElementById("blue");
 const resetBtn = document.getElementById("reset");
 const bgArea = document.getElementById("colorArea");
 
+const defaultColor = bgArea.style.backgroundColor;
+
+function changeColor(color) {
+    bgArea.style.backgroundColor = color;
+}
+
 redBtn.addEventListener('click', ()=> {
-    bgArea.style.backgroundColor = "#cc3300";
+    changeColor("#cc3300");
 });
 
 blueBtn.addEventListener('click', ()=> {
-    bgArea.style.backgroundColor = "#0099cc";
+    changeColor("#0099cc");
 });
 
 resetBtn.addEventListener('click', ()=> {
-    bgArea.style.backgroundColor = "#ccc";
+    changeColor(defaultColor);
 });
 
 
@@ -113,3 +119,86 @@ Jsweets.forEach((Jsweet) => {
 });
 
 
+// Q7.
+//2倍した結果を HTMLのclass="double-result" に表示する関数を作成してください
+//作った関数には25を渡してください
+
+function showDouble(num) {
+    const result = document.querySelector(".double-result");
+    result.innerText = num *2;
+}
+
+showDouble(25);
+
+
+// Q8.
+// selectで選択された値を取得して class="selected" に表示させてください
+
+const kinds = document.getElementById("kinds");
+const selected = document.querySelector('.selected');
+
+kinds.addEventListener("change",()=> {
+    selected.innerHTML = kinds.value;
+});
+
+// Q9.
+// 生年月日（文字列）birthdayを引数として受け取り現在の年齢を算出してください
+// 帰ってきた年齢を class="age"に表示してください
+
+//Dateが認識できる書き方
+const birthday = "1995-05-16";
+        
+function calculateAge(birthday) {
+    const today = new Date();
+    const birthDate = new Date(birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+const age = calculateAge(birthday);
+const ageEl = document.querySelector(".age");
+ageEl.innerText = `${age}歳`;
+
+
+// Q10.
+// チェックボックスをクリックしたとき
+// weight が500未満の生き物だけを
+// ul に li として表示させてください
+// チェックが外れた場合は、すべての生き物を表示してください
+
+const animals = [
+    { name: "シャチ", weight: 3000 ,live: "知床半島"},
+    { name: "イルカ", weight: 150 ,live: "熊本天草"},
+    { name: "クジラ", weight: 25000 ,live: "小笠原諸島"},
+    { name: "スナメリ", weight: 40 ,live: "瀬戸内海"}
+];
+
+// 要素を取得
+const checkBox = document.getElementById("priceCheck");
+const animalList = document.querySelector(".animal-list");
+
+// 全てを表示
+function renderAnimals(animals){  
+    animalList.innerHTML = "";
+
+    animals.forEach(animal => {
+        const animalListLi = document.createElement("li");
+        animalListLi.innerText = `${animal.name}:${animal.weight}kg(${animal.live})`;
+        animalList.appendChild(animalListLi);
+    });
+}
+
+renderAnimals(animals);
+
+    checkBox.addEventListener("change",()=> {
+        if(checkBox.checked){
+            const underWeight = animals.filter(animal => animal.weight <= 500);
+            renderAnimals(underWeight);
+        }else{
+            renderAnimals(animals);
+        }
+    });
