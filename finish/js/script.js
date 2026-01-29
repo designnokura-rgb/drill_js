@@ -25,15 +25,15 @@ function changeColor(color) {
     bgArea.style.backgroundColor = color;
 }
 
-redBtn.addEventListener('click', ()=> {
+redBtn.addEventListener('click', () => {
     changeColor("#cc3300");
 });
 
-blueBtn.addEventListener('click', ()=> {
+blueBtn.addEventListener('click', () => {
     changeColor("#0099cc");
 });
 
-resetBtn.addEventListener('click', ()=> {
+resetBtn.addEventListener('click', () => {
     changeColor(defaultColor);
 });
 
@@ -42,10 +42,10 @@ resetBtn.addEventListener('click', ()=> {
 //HTML Q3 の ul要素の子要素へ　liを3つ追加
 //liには「卵」「砂糖」「醤油」と表示させてください
 
-const material = ["卵","砂糖","醤油"];
+const material = ["卵", "砂糖", "醤油"];
 const materialList = document.getElementById("material-list");
 
-material.forEach((item)=>{
+material.forEach((item) => {
     const li = document.createElement("li");
     li.innerText = item;
     materialList.appendChild(li);
@@ -53,17 +53,17 @@ material.forEach((item)=>{
 
 
 // Q4.
-//categoryが"トップス"の商品だけを抜き出して
+//categoryが"イス"の商品だけを抜き出して
 //nameを ulの中に li として表示させてください
 
-const  chairs= [
+const chairs = [
     { id: 1, name: "LC2", category: "イス", price: 605000 },
     { id: 2, name: "マシュマロソファ", category: "ソファ", price: 1199000 },
     { id: 3, name: "ラ・シェーズ", category: "イス", price: 1161600 },
     { id: 4, name: "ボールチェア", category: "イス", price: 1225400 }
 ];
 
-const result = chairs.filter((item)=>{
+const result = chairs.filter((item) => {
     return item.category === "イス";
 });
 const chairList = document.querySelector(".chair-list");
@@ -79,7 +79,7 @@ result.forEach(item => {
 
 //Q5.
 // スコアが80点以上の生徒だけ抜き出して
-// HTML 05 のclass="over"内にカンマ区切りで表示させてください
+// HTML 05 のclass="over"内にリストで表示させてください
 const students = [
     { name: "早川", score: 85 },
     { name: "吉田", score: 72 },
@@ -91,11 +91,11 @@ const scoreOver = students.filter(student => student.score >= 80);
 
 const studentOverList = document.getElementById("overSL");
 
-scoreOver.forEach((student)=>{
-        const innerList = document.createElement("li");
-        innerList.innerText = student.name;
-        studentOverList.appendChild(innerList);
-    });
+scoreOver.forEach((student) => {
+    const innerList = document.createElement("li");
+    innerList.innerText = student.name;
+    studentOverList.appendChild(innerList);
+});
 
 
 
@@ -109,23 +109,23 @@ const Jsweets = [
 
 const tableBody = document.getElementById("japaneseSweet");
 Jsweets.forEach((Jsweet) => {
-    
+
     const tr = document.createElement("tr");
     tableBody.appendChild(tr);
     tr.innerHTML = `
     <td>${Jsweet.id}</td><td>${Jsweet.name}</td><td>${Jsweet.price}円</td>
     `;
-    
+
 });
 
 
 // Q7.
-//2倍した結果を HTMLのclass="double-result" に表示する関数を作成してください
+//2倍した結果を HTMLのclass="double-result" に表示するshowDouble関数を作成してください
 //作った関数には25を渡してください
 
 function showDouble(num) {
     const result = document.querySelector(".double-result");
-    result.innerText = num *2;
+    result.innerText = num * 2;
 }
 
 showDouble(25);
@@ -137,17 +137,17 @@ showDouble(25);
 const kinds = document.getElementById("kinds");
 const selected = document.querySelector('.selected');
 
-kinds.addEventListener("change",()=> {
+kinds.addEventListener("change", () => {
     selected.innerHTML = kinds.value;
 });
 
 // Q9.
 // 生年月日（文字列）birthdayを引数として受け取り現在の年齢を算出してください
-// 帰ってきた年齢を class="age"に表示してください
+// 返ってきた年齢を class="age"に表示してください
 
 //Dateが認識できる書き方
 const birthday = "1995-05-16";
-        
+
 function calculateAge(birthday) {
     const today = new Date();
     const birthDate = new Date(birthday);
@@ -165,16 +165,20 @@ ageEl.innerText = `${age}歳`;
 
 
 // Q10.
-// チェックボックスをクリックしたとき
-// weight が500未満の生き物だけを
-// ul に li として表示させてください
-// チェックが外れた場合は、すべての生き物を表示してください
+/*
+1. animals配列を使って、全ての動物を<ul class="animal-list"></ul>内にリストで表示するrenderAnimals関数を定義してください。
+引数: animals
+戻り値: なし
+※表示例はHTMLファイルのコメントアウトを参照
+
+2. チェックボックスにチェックが入っている場合、weight が500未満の生き物だけが表示されるようにしてください。チェックが外れたら、再度全ての生き物が表示されるようにしてください
+*/
 
 const animals = [
-    { name: "シャチ", weight: 3000 ,live: "知床半島"},
-    { name: "イルカ", weight: 150 ,live: "熊本天草"},
-    { name: "クジラ", weight: 25000 ,live: "小笠原諸島"},
-    { name: "スナメリ", weight: 40 ,live: "瀬戸内海"}
+    { name: "シャチ", weight: 3000, live: "知床半島" },
+    { name: "イルカ", weight: 150, live: "熊本天草" },
+    { name: "クジラ", weight: 25000, live: "小笠原諸島" },
+    { name: "スナメリ", weight: 40, live: "瀬戸内海" }
 ];
 
 // 要素を取得
@@ -182,7 +186,7 @@ const checkBox = document.getElementById("priceCheck");
 const animalList = document.querySelector(".animal-list");
 
 // 全てを表示
-function renderAnimals(animals){  
+function renderAnimals(animals) {
     animalList.innerHTML = "";
 
     animals.forEach(animal => {
@@ -194,11 +198,11 @@ function renderAnimals(animals){
 
 renderAnimals(animals);
 
-    checkBox.addEventListener("change",()=> {
-        if(checkBox.checked){
-            const underWeight = animals.filter(animal => animal.weight <= 500);
-            renderAnimals(underWeight);
-        }else{
-            renderAnimals(animals);
-        }
-    });
+checkBox.addEventListener("change", () => {
+    if (checkBox.checked) {
+        const underWeight = animals.filter(animal => animal.weight <= 500);
+        renderAnimals(underWeight);
+    } else {
+        renderAnimals(animals);
+    }
+});
