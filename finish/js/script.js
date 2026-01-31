@@ -206,7 +206,7 @@ const animals = [
 const checkBox = document.getElementById("weightCheck");
 const animalList = document.querySelector(".animal-list");
 
-// 1.全てを表示する関数をy定義
+// 1.全てを表示する関数を定義
 function renderAnimals(animals) {
     animalList.innerHTML = "";
 
