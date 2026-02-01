@@ -8,10 +8,16 @@ msg.innerHTML = '完了しました';
 
 
 //Q2.
-//HTML Q2 のbuttonをクリックした時
+//1.「指定した色に変更される」changiColor関数を定義
+// 引数：color
+// 戻り値：なし
+
+//2.背景色を「デフォルトの色」にするための変数defaultColorを定義
+
+//3.HTML Q2 のbuttonをクリックした時
 // 「赤になるボタン」を押したとき#cc3300
 // 「青になるボタン」を押したとき#0099cc
-//「元に戻るボタン」を押したとき最初の色
+//「元に戻るボタン」を押したとき「デフォルトの色」
 //　にそれぞれ切り替わる様にJSを記述してください
 
 const redBtn = document.getElementById("red");
@@ -20,6 +26,7 @@ const resetBtn = document.getElementById("reset");
 const bgArea = document.getElementById("colorArea");
 
 const defaultColor = bgArea.style.backgroundColor;
+
 
 function changeColor(color) {
     bgArea.style.backgroundColor = color;
@@ -39,8 +46,8 @@ resetBtn.addEventListener('click', () => {
 
 
 //Q3.
-//HTML Q3 の ul要素の子要素へ　liを3つ追加
-//liには「卵」「砂糖」「醤油」と表示させてください
+//HTML Q3 の ul要素の子要素へ　liを繰り返し処理で3つ追加
+//liにはそれぞれ「卵」「砂糖」「醤油」と表示させてください
 
 const material = ["卵", "砂糖", "醤油"];
 const materialList = document.getElementById("material-list");
@@ -53,8 +60,9 @@ material.forEach((item) => {
 
 
 // Q4.
-//categoryが"イス"の商品だけを抜き出して
-//nameを ulの中に li として表示させてください
+//配列chairs の category が"イス"の商品だけを抜き出して
+//その商品のnameを ulの中に li として表示させてください
+//liはjsで繰り返し処理を用いて追加してください
 
 const chairs = [
     { id: 1, name: "LC2", category: "イス", price: 605000 },
@@ -80,6 +88,8 @@ result.forEach(item => {
 //Q5.
 // スコアが80点以上の生徒だけ抜き出して
 // HTML 05 のclass="over"内にリストで表示させてください
+// liはjsで繰り返し処理を用いて追加してください
+
 const students = [
     { name: "早川", score: 85 },
     { name: "吉田", score: 72 },
@@ -100,7 +110,9 @@ scoreOver.forEach((student) => {
 
 
 //Q6.
-// HTML Q6　の見出し順で、以下配列をテーブルで表示してください
+// HTML Q6　見出し（th)の順番で、以下配列をテーブルにて表示してください
+//テーブルはjsで繰り返し処理を用いて追加してください
+
 const Jsweets = [
     { id: 1, name: "豆大福", price: 200 },
     { id: 2, name: "桜餅", price: 280 },
@@ -109,7 +121,6 @@ const Jsweets = [
 
 const tableBody = document.getElementById("japaneseSweet");
 Jsweets.forEach((Jsweet) => {
-
     const tr = document.createElement("tr");
     tableBody.appendChild(tr);
     tr.innerHTML = `
@@ -120,8 +131,11 @@ Jsweets.forEach((Jsweet) => {
 
 
 // Q7.
-//2倍した結果を HTMLのclass="double-result" に表示するshowDouble関数を作成してください
-//作った関数には25を渡してください
+//2倍した結果を HTMLのclass="double-result" に表示する
+// showDouble関数を作成してください
+// 引数:num
+// 戻り値：なし
+// 作った関数には25を渡してください
 
 function showDouble(num) {
     const result = document.querySelector(".double-result");
@@ -141,13 +155,17 @@ kinds.addEventListener("change", () => {
     selected.innerHTML = kinds.value;
 });
 
-// Q9.
-// 生年月日（文字列）birthdayを引数として受け取り現在の年齢を算出してください
-// 返ってきた年齢を class="age"に表示してください
 
-//Dateが認識できる書き方
+// Q9.
+// 1.生年月日（文字列）birthdayを引数として受け取り現在の年齢を算出する関数calculateAgeを定義
+// 引数：birthday
+// 戻り値:age
+
+// 2.関数を実行して返ってきた年齢を class="age"に表示してください
+
 const birthday = "1995-05-16";
 
+//年齢を算出する関数を定義
 function calculateAge(birthday) {
     const today = new Date();
     const birthDate = new Date(birthday);
@@ -159,6 +177,7 @@ function calculateAge(birthday) {
     return age;
 }
 
+
 const age = calculateAge(birthday);
 const ageEl = document.querySelector(".age");
 ageEl.innerText = `${age}歳`;
@@ -166,12 +185,14 @@ ageEl.innerText = `${age}歳`;
 
 // Q10.
 /*
-1. animals配列を使って、全ての動物を<ul class="animal-list"></ul>内にリストで表示するrenderAnimals関数を定義してください。
+1. animals配列を使って、全ての動物を<ul class="animal-list"></ul>内にリストで表示する
+renderAnimals関数を定義してください。
 引数: animals
 戻り値: なし
 ※表示例はHTMLファイルのコメントアウトを参照
 
-2. チェックボックスにチェックが入っている場合、weight が500未満の生き物だけが表示されるようにしてください。チェックが外れたら、再度全ての生き物が表示されるようにしてください
+2. チェックボックスにチェックが入っている場合、weight が500未満の生き物だけが表示されるようにしてください。
+チェックが外れたら、再度全ての生き物が表示されるようにしてください
 */
 
 const animals = [
@@ -182,10 +203,10 @@ const animals = [
 ];
 
 // 要素を取得
-const checkBox = document.getElementById("priceCheck");
+const checkBox = document.getElementById("weightCheck");
 const animalList = document.querySelector(".animal-list");
 
-// 全てを表示
+// 1.全てを表示する関数を定義
 function renderAnimals(animals) {
     animalList.innerHTML = "";
 
@@ -198,6 +219,7 @@ function renderAnimals(animals) {
 
 renderAnimals(animals);
 
+//2.チェックボックスにチェックが入っているとき、weightが500未満の生き物だけが表示されるイベントを記述
 checkBox.addEventListener("change", () => {
     if (checkBox.checked) {
         const underWeight = animals.filter(animal => animal.weight <= 500);
