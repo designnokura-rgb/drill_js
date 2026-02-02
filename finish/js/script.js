@@ -29,8 +29,6 @@ const defaultColor = bgArea.style.backgroundColor;
 btns.forEach((changeBtn) => {
     changeBtn.addEventListener('click', (event) => {
         const selectColor = event.currentTarget.dataset.btn;
-        console.log(selectColor.currentTarget);
-        console.log(selectColor.target);
         
         if(selectColor === 'reset') {
             changeColor(defaultColor);
