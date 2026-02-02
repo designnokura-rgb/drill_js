@@ -94,9 +94,21 @@ const chairs = [
     { id: 4, name: "ボールチェア", category: "イス", price: 1225400 }
 ];
 
-const result = chairs.filter((item) => {
-    return item.category === "イス";
-});
+
+
+// もし省略しなかったらこうなる
+// filterで配列の中身を一つずつチェック。trueだったら表示、falseだったら非表示に分類してる
+// const result = chairs.filter(function(item) {
+//     if (item.category === "イス") {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// });
+
+//これをまとめると以下の１行になる
+const result = chairs.filter(item => item.category === "イス" );
+
 const chairList = document.querySelector(".chair-list");
 
 result.forEach(item => {
