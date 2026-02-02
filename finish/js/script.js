@@ -20,29 +20,54 @@ msg.innerHTML = '完了しました';
 //「元に戻るボタン」を押したとき「デフォルトの色」
 //　にそれぞれ切り替わる様にJSを記述してください
 
-const redBtn = document.getElementById("red");
-const blueBtn = document.getElementById("blue");
-const resetBtn = document.getElementById("reset");
+// Allでいっぺんに取得するやり方
+const btns = document.querySelectorAll('button');
 const bgArea = document.getElementById("colorArea");
-
 const defaultColor = bgArea.style.backgroundColor;
 
+
+btns.forEach((changeBtn) => {
+    changeBtn.addEventListener('click', (event) => {
+        const selectColor = event.currentTarget.dataset.btn;
+        console.log(selectColor.currentTarget);
+        console.log(selectColor.target);
+        
+        if(selectColor === 'reset') {
+            changeColor(defaultColor);
+        }else {
+            changeColor(selectColor);
+        } 
+    });
+});
 
 function changeColor(color) {
     bgArea.style.backgroundColor = color;
 }
 
-redBtn.addEventListener('click', () => {
-    changeColor("#cc3300");
-});
 
-blueBtn.addEventListener('click', () => {
-    changeColor("#0099cc");
-});
+// 一個ずつ取得するやり方
+// const redBtn = document.getElementById("red");
+// const blueBtn = document.getElementById("blue");
+// const resetBtn = document.getElementById("reset");
+// const bgArea = document.getElementById("colorArea");
+// const defaultColor = bgArea.style.backgroundColor;
 
-resetBtn.addEventListener('click', () => {
-    changeColor(defaultColor);
-});
+// redBtn.addEventListener('click', () => {
+//     changeColor("#cc3300");
+// });
+
+// blueBtn.addEventListener('click', () => {
+//     changeColor("#0099cc");
+// });
+
+// resetBtn.addEventListener('click', () => {
+//     changeColor(defaultColor);
+// });
+
+// function changeColor(color) {
+//     bgArea.style.backgroundColor = color;
+// }
+
 
 
 //Q3.
